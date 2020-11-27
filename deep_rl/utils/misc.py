@@ -75,7 +75,7 @@ def generate_tag(params):
     run = params['run']
     del params['game']
     del params['run']
-    str = ['%s_%s' % (k, v if is_plain_type(v) else v.__name__) for k, v in sorted(params.items())]
+    str = ['%s_%s' % (k, v if is_plain_type(v) else v.__name__) for k, v in sorted(params.items()) if k!='env']
     tag = '%s-%s-run-%d' % (game, '-'.join(str), run)
     params['tag'] = tag
     params['game'] = game
