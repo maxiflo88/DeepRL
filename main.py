@@ -59,13 +59,12 @@ class myTrader(gym.Env):
     self.history['worth'].append(self.wallet.total())
         
     reward=self.risk.get_reward(self.history['worth'])
-    info={'episodic_return':reward}
     if self.wallet.total()<=self.minimum_balance or len(self.data)-1==self.current_step:
         done=True 
     obs=self.data.values[self.current_step]
     self.current_step += 1
     self.wallet.step()
-    return obs, reward, done, info
+    return obs, reward, done, {}
 
   def _observation(self):
     if (self.current_step-self.window_size)<0:
